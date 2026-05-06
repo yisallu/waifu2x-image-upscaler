@@ -1,0 +1,22 @@
+# Local waifu2x binaries and downloaded model packages
+vendor/
+
+# Native host build outputs
+native-host/bin/
+native-host/obj/
+
+# Debug screenshots and temporary captures
+screen-*.png
+live-*.png
+current-chrome-image.jpg
+
+# OS/editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Runtime temp/log files
+*.log
+*.tmp

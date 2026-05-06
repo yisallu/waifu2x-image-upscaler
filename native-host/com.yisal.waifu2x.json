@@ -1,0 +1,9 @@
+{
+  "name": "com.yisal.waifu2x",
+  "description": "Waifu2x native host for Chrome inline image replacement",
+  "path": "D:\\waifu2xchrome\\native-host\\bin\\Release\\net9.0\\win-x64\\publish\\Waifu2xNativeHost.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://afckmmcaahgcjeeiebpchipilpccbeha/"
+  ]
+}

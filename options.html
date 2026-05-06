@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <title>Waifu2x 参数配置</title>
+  </head>
+  <body>
+    <main class="options-shell">
+      <header class="options-header">
+        <div>
+          <h1>Waifu2x 参数配置</h1>
+          <p>这些参数会同时影响右键放大、当前页处理和全自动模式。</p>
+        </div>
+        <button id="reset" type="button">恢复默认</button>
+      </header>
+
+      <section class="options-grid">
+        <label class="option-card">
+          <span>放大倍率</span>
+          <select id="scale">
+            <option value="2">2x</option>
+            <option value="4">4x</option>
+          </select>
+        </label>
+
+        <label class="option-card">
+          <span>降噪等级</span>
+          <select id="noise">
+            <option value="-1">-1 保留细节</option>
+            <option value="0">0 不降噪</option>
+            <option value="1">1 轻度</option>
+            <option value="2">2 标准</option>
+            <option value="3">3 强力</option>
+          </select>
+        </label>
+
+        <label class="option-card">
+          <span>Tile 大小</span>
+          <select id="tile-size">
+            <option value="128">128 更稳</option>
+            <option value="256">256 推荐</option>
+            <option value="512">512 更快</option>
+          </select>
+        </label>
+
+        <label class="option-card">
+          <span>模型</span>
+          <select id="model">
+            <option value="models-cunet">CUNet 通用推荐</option>
+            <option value="models-upconv_7_anime_style_art_rgb">Anime Style</option>
+            <option value="models-upconv_7_photo">Photo</option>
+          </select>
+        </label>
+
+        <label class="option-card">
+          <span>自动模式最小宽度</span>
+          <input id="min-width" type="number" min="80" max="2000" step="10">
+        </label>
+
+        <label class="option-card">
+          <span>自动模式最小高度</span>
+          <input id="min-height" type="number" min="80" max="2000" step="10">
+        </label>
+
+        <label class="option-card">
+          <span>自动模式最小面积</span>
+          <input id="min-area" type="number" min="10000" max="4000000" step="10000">
+        </label>
+
+        <label class="option-card">
+          <span>最大输出边长</span>
+          <input id="max-output-edge" type="number" min="512" max="12000" step="256">
+        </label>
+      </section>
+
+      <section class="options-actions">
+        <button id="save" type="button">保存配置</button>
+        <p id="status"></p>
+      </section>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

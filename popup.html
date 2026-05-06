@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <title>Waifu2x Image Upscaler</title>
+  </head>
+  <body class="popup">
+    <main class="popup-shell">
+      <h1>Waifu2x 放大</h1>
+      <p>右键图片可单张替换，也可以开启全自动模式处理网页里的图片。</p>
+      <label class="toggle-row">
+        <input id="auto-mode" type="checkbox">
+        <span>全自动模式</span>
+      </label>
+      <label class="toggle-row">
+        <input id="debug-log" type="checkbox">
+        <span>显示调试日志</span>
+      </label>
+      <button id="run-current-page" type="button">立即处理当前页</button>
+      <button id="open-options" type="button">配置参数</button>
+      <button id="open-workbench" type="button">打开空白工作台</button>
+      <p id="popup-status" class="popup-status"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

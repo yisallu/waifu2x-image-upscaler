@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <title>Waifu2x Image Upscaler</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="toolbar">
+        <div class="brand">
+          <span class="mark">2x</span>
+          <div>
+            <h1>Waifu2x 放大</h1>
+            <p id="source-label">等待图片</p>
+          </div>
+        </div>
+
+        <div class="controls">
+          <label>
+            <span>倍率</span>
+            <select id="scale">
+              <option value="2">2x</option>
+              <option value="4">4x</option>
+            </select>
+          </label>
+          <label>
+            <span>锐化</span>
+            <input id="sharpen" type="range" min="0" max="100" value="35">
+          </label>
+          <label>
+            <span>输出</span>
+            <select id="format">
+              <option value="image/png">PNG</option>
+              <option value="image/jpeg">JPEG</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="pick-file" type="button">选择图片</button>
+          <button id="upscale" type="button" disabled>开始放大</button>
+          <button id="download" type="button" disabled>下载</button>
+        </div>
+      </section>
+
+      <section class="notice" id="notice">
+        右键网页图片进入时会自动读取；也可以从本地选择图片。本地模式不是真 AI 模型，但会在浏览器内完成放大和锐化，不上传图片。
+      </section>
+
+      <section class="workspace">
+        <article class="preview">
+          <header>
+            <h2>原图</h2>
+            <span id="input-size">-</span>
+          </header>
+          <div class="canvas-frame">
+            <img id="source-image" alt="">
+            <div class="empty" id="source-empty">没有载入图片</div>
+          </div>
+        </article>
+
+        <article class="preview">
+          <header>
+            <h2>结果</h2>
+            <span id="output-size">-</span>
+          </header>
+          <div class="canvas-frame">
+            <canvas id="output-canvas"></canvas>
+            <div class="empty" id="output-empty">放大后显示在这里</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="external">
+        <div>
+          <h2>外部 AI 服务</h2>
+          <p>如果你想用真正的 waifu2x/AI 模型，可以把当前图片链接带到外部服务。</p>
+        </div>
+        <div class="external-actions">
+          <button id="open-waifu2x" type="button" disabled>打开 Waifu2x</button>
+          <button id="open-bigjpg" type="button" disabled>打开 Bigjpg</button>
+        </div>
+      </section>
+    </main>
+
+    <input id="file-input" type="file" accept="image/*" hidden>
+    <script src="upscale.js"></script>
+  </body>
+</html>
