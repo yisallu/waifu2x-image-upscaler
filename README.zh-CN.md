@@ -37,7 +37,7 @@ booru
 | 版本 | 文件 | 版本号 |
 | --- | --- | --- |
 | Chrome 扩展 | `manifest.json` | `0.8.2` |
-| 油猴脚本 | `waifu2x-userscript.user.js` | `0.5.3` |
+| 油猴脚本 | `waifu2x-userscript.user.js` | `0.5.4` |
 
 ## 功能
 

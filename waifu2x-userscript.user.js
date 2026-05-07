@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Waifu2x 图片放大替换
 // @namespace    https://yisal.local/waifu2x
-// @version      0.5.3
+// @version      0.5.4
 // @description  单击图片右下角，用本机 waifu2x-ncnn-vulkan 放大并在原位置替换。
 // @match        http://*/*
 // @match        https://*/*
@@ -102,6 +102,9 @@
   document.addEventListener("click", (event) => {
     const target = findImageTarget(event, true);
     if (!target || !isPointerInBottomRight(event, target)) {
+      return;
+    }
+    if (isSmallImage(target)) {
       return;
     }
 
@@ -426,13 +429,22 @@
   }
 
   function isSmallImage(image) {
-    const width = image.naturalWidth || image.width || 0;
-    const height = image.naturalHeight || image.height || 0;
-    const area = width * height;
+    const box = image.getBoundingClientRect?.();
+    const displayWidth = Math.round(box?.width || 0);
+    const displayHeight = Math.round(box?.height || 0);
     const text = `${image.className || ""} ${image.alt || ""} ${image.id || ""} ${getImageSource(image)}`.toLowerCase();
-    if (/\b(icon|avatar|emoji|logo|badge|button|thumb|thumbnail|sprite)\b/.test(text)) {
+    if (/\b(icon|avatar|emoji|logo|badge|button|thumb|thumbnail|preview|sample|sprite)\b/.test(text)) {
       return true;
     }
+    if (displayWidth > 0 && displayHeight > 0) {
+      const displayArea = displayWidth * displayHeight;
+      if (displayWidth < settings.autoMinWidth || displayHeight < settings.autoMinHeight || displayArea < settings.autoMinArea) {
+        return true;
+      }
+    }
+    const width = image.naturalWidth || image.width || displayWidth;
+    const height = image.naturalHeight || image.height || displayHeight;
+    const area = width * height;
     return width < settings.autoMinWidth || height < settings.autoMinHeight || area < settings.autoMinArea;
   }
 

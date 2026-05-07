@@ -37,7 +37,7 @@ Waifu2x Image Upscaler - Chrome Extension and Tampermonkey Userscript
 | Package | File | Version |
 | --- | --- | --- |
 | Chrome extension | `manifest.json` | `0.8.2` |
-| Tampermonkey userscript | `waifu2x-userscript.user.js` | `0.5.3` |
+| Tampermonkey userscript | `waifu2x-userscript.user.js` | `0.5.4` |
 
 ## Features
 
