@@ -4,6 +4,7 @@ vendor/
 # Native host build outputs
 native-host/bin/
 native-host/obj/
+native-host/com.yisal.waifu2x.local.json
 
 # Debug screenshots and temporary captures
 screen-*.png

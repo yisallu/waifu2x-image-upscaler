@@ -3,7 +3,7 @@
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0JhvYzkIL6kIRxIvTP8svolj0sOCIQAO/ys9L02pGmV8kPQzhYw1rQ/GQ0+8iQEOHHLkkdYIdTtC2eVGzIRB6JQ3uOr6P5uZSM9n7gj3iDNGoRE5qfaLfSy6DXEQmf+InvqbPxJVSGIi/BSMsEZ1eB4AWA6XBKSih0Kw668M4oBzXnZv/FYd0b28X/MWVCxVi3WvDgM3JR4/hYPSOqoFTW+0+52QsC1NlHDO0LdEng4BmfadJHUsfqTXP5PqfqYQZHEBpBvPOs7iwsOhIG+v2F4QLB6M+E5T0H5kYk0ie4AtBWHuoDM5t6Eab+MzAiQ/YZHHhl+XTFnd3xJd7wKfZQIDAQAB",
   "name": "Waifu2x Image Upscaler",
   "description": "Upscale and replace web images in place with local waifu2x-ncnn-vulkan.",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "permissions": [
     "activeTab",
     "contextMenus",

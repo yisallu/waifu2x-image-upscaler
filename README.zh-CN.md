@@ -36,7 +36,7 @@ booru
 
 | 版本 | 文件 | 版本号 |
 | --- | --- | --- |
-| Chrome 扩展 | `manifest.json` | `0.8.2` |
+| Chrome 扩展 | `manifest.json` | `0.8.3` |
 | 油猴脚本 | `waifu2x-userscript.user.js` | `0.5.4` |
 
 ## 功能
@@ -96,28 +96,24 @@ export WAIFU2X_NCNN_VULKAN=/absolute/path/to/waifu2x-ncnn-vulkan
 
 ### Windows
 
-1. 准备好 `vendor/waifu2x-ncnn-vulkan/waifu2x-ncnn-vulkan.exe`。
-2. 发布 Native Host：
+1. 如果没有安装 .NET SDK，先安装 .NET SDK。
+2. 在项目根目录运行 Windows 安装脚本：
 
    ```powershell
-   dotnet publish .\native-host\Waifu2xNativeHost.csproj -c Release -r win-x64 --self-contained false
+   powershell -ExecutionPolicy Bypass -File .\install-chrome-extension.ps1
    ```
 
-3. 注册 Chrome Native Messaging：
+   这个脚本会下载 `waifu2x-ncnn-vulkan`、发布 Native Host、生成带有当前电脑可执行文件路径的 `native-host/com.yisal.waifu2x.local.json`，并写入当前 Windows 用户的 Chrome 注册表。
 
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\register-native-host.ps1
-   ```
-
-4. 打开 Chrome：
+3. 打开 Chrome：
 
    ```text
    chrome://extensions/
    ```
 
-5. 打开“开发者模式”。
-6. 点击“加载已解压的扩展程序”，选择本项目目录。
-7. 如果之前加载过，点击扩展卡片上的刷新按钮。
+4. 打开“开发者模式”。
+5. 点击“加载已解压的扩展程序”，选择本项目目录。
+6. 如果之前加载过，点击扩展卡片上的刷新按钮。
 
 固定扩展 ID：
 
@@ -181,7 +177,8 @@ Invoke-WebRequest -UseBasicParsing http://127.0.0.1:17830/health
 
 - **油猴脚本显示放大中但没变化**：确认 `start-userscript-server.ps1` 已启动，并且 `/health` 返回 `ok: true`。
 - **出现灰白方块**：刷新页面恢复原图后再试。脚本会跳过常见占位图，但部分网站的懒加载层可能比较特殊。
-- **Chrome 扩展 Native Host 失败**：重新执行 `dotnet publish` 和 `register-native-host.ps1`，然后刷新扩展。
+- **Chrome 显示 `Specified native messaging host not found`**：运行 `powershell -ExecutionPolicy Bypass -File .\install-chrome-extension.ps1`，然后在 `chrome://extensions/` 刷新已加载的扩展。
+- **Chrome 扩展更新后 Native Host 失败**：重新执行 `register-native-host.ps1`，然后刷新扩展。
 - **图片太大被拒绝**：降低倍率，或在配置页提高最大输出边长。
 - **跨域读取失败**：打开调试日志看具体失败路径。
 

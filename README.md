@@ -36,7 +36,7 @@ Waifu2x Image Upscaler - Chrome Extension and Tampermonkey Userscript
 
 | Package | File | Version |
 | --- | --- | --- |
-| Chrome extension | `manifest.json` | `0.8.2` |
+| Chrome extension | `manifest.json` | `0.8.3` |
 | Tampermonkey userscript | `waifu2x-userscript.user.js` | `0.5.4` |
 
 ## Features
@@ -114,28 +114,24 @@ export WAIFU2X_NCNN_VULKAN=/absolute/path/to/waifu2x-ncnn-vulkan
 
 ### Windows
 
-1. Install or extract `waifu2x-ncnn-vulkan` into `vendor/waifu2x-ncnn-vulkan/`.
-2. Publish the native host:
+1. Install the .NET SDK if it is not already installed.
+2. Run the Windows installer from the project root:
 
    ```powershell
-   dotnet publish .\native-host\Waifu2xNativeHost.csproj -c Release -r win-x64 --self-contained false
+   powershell -ExecutionPolicy Bypass -File .\install-chrome-extension.ps1
    ```
 
-3. Register the native messaging host:
+   This downloads `waifu2x-ncnn-vulkan`, publishes the native host, generates `native-host/com.yisal.waifu2x.local.json` with the local executable path, and registers it under the current Windows user.
 
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\register-native-host.ps1
-   ```
-
-4. Open Chrome:
+3. Open Chrome:
 
    ```text
    chrome://extensions/
    ```
 
-5. Enable **Developer mode**.
-6. Click **Load unpacked** and choose this project folder.
-7. If the extension was already loaded, click the reload button on the extension card.
+4. Enable **Developer mode**.
+5. Click **Load unpacked** and choose this project folder.
+6. If the extension was already loaded, click the reload button on the extension card.
 
 The fixed extension ID is:
 
@@ -204,7 +200,8 @@ Expected response:
 
 - **Userscript says it is upscaling but nothing changes**: make sure `start-userscript-server.ps1` is running and `http://127.0.0.1:17830/health` returns `ok: true`.
 - **A blank/gray block appears**: refresh the page to restore the original image. The userscript includes placeholder detection, but some sites use unusual lazy-loading layers.
-- **Chrome extension native host fails**: rerun `dotnet publish` and `register-native-host.ps1`, then reload the extension.
+- **Chrome shows `Specified native messaging host not found`**: run `powershell -ExecutionPolicy Bypass -File .\install-chrome-extension.ps1`, then reload the unpacked extension in `chrome://extensions/`.
+- **Chrome extension native host fails after an update**: rerun `register-native-host.ps1`, then reload the extension.
 - **Huge images are rejected**: lower scale or increase `maxOutputEdge` in the extension options page.
 - **Cross-origin image fetch fails**: the extension/userscript will try multiple read paths; enable debug log to see which one failed.
 
